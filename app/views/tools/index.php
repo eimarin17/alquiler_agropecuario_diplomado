@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if (isset($_SESSION['usuario'])) {
+  $user_autenticate = true;  
+}
+?>
 <?php include('../../../header.php') ?>
 <?php include('../../../menu.php') ?>
 

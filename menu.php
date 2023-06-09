@@ -1,4 +1,5 @@
 
+
 <!-- Incio barra navegacion -->
 <section>
 	<nav class="navbar navbar-expand-lg bg-body-tertiary color-principal">
@@ -20,9 +21,22 @@
 					<li class="nav-item">
 						<a class="nav-link" href="<?= ROOT ?>nosotros.php">Nosotros</a>
 					</li>
+					<!-- Validate sesion -->
+					<?php if(isset($user_autenticate)){ ?>
 					<li class="nav-item">
 						<a class="nav-link" href="<?= ROOT ?>app/views/tools/index.php">Herramientas</a>
 					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="<?= ROOT ?>app/views/login/logout.php">Cerrar Sesión</a>
+					</li>
+					<?php }?>
+					
+					<?php if(!isset($user_autenticate)){ ?>
+					<li class="nav-item">
+						<a class="nav-link" href="<?= ROOT ?>app/views/login/login.php">Inciar Sesión</a>
+					</li>
+					<?php }?>
 				</ul>
 			</div>
             
