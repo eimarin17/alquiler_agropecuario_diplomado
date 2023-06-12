@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2023 a las 00:36:00
+-- Tiempo de generación: 29-05-2023 a las 00:29:18
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -29,43 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alquiler` (
   `id` int(11) NOT NULL,
-  `usuario_id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `alquiler`
---
-
-INSERT INTO `alquiler` (`id`, `usuario_id`, `fecha`) VALUES
-(3, 1, '2023-06-12 17:32:44');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `contactenos`
---
-
-CREATE TABLE `contactenos` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(200) NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `telefono` varchar(30) NOT NULL,
-  `mensaje` varchar(400) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `contactenos`
---
-
-INSERT INTO `contactenos` (`id`, `nombre`, `email`, `telefono`, `mensaje`) VALUES
-(1, 'asfd', 'asdf', '234', 'asdfasdf'),
-(2, 'asdf', 'aasdf', '123', 'asfdsadf'),
-(3, 'Einer Marin Beltran', 'emarinbe@ibero.edu.co', '2147483647', 'Requiero obtener mas información sobre el proceso'),
-(4, 'Pepito Perez', 'pepito@gmail.com', '2147483647', 'ejemplo'),
-(5, 'pepito2', 'pepito2@gmail.com', '2147483647', 'asdfasfd'),
-(6, 'asdf', 'asf@adf.com', '1234', 'asfdasfd'),
-(7, 'EIner2', 'einer@gmail.com', '3208813908', 'ejemploo');
 
 -- --------------------------------------------------------
 
@@ -98,19 +64,21 @@ INSERT INTO `herramientas` (`id`, `nombre_herramienta`, `cantidad`, `descripcion
 --
 
 CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `contrasena` varchar(100) DEFAULT NULL,
   `nombres` varchar(100) DEFAULT NULL,
   `apellidos` varchar(100) DEFAULT NULL,
   `correo_electronico` varchar(100) DEFAULT NULL,
-  `saldo` double(22,2) DEFAULT NULL
+  `saldo` double(22,2) DEFAULT NULL,
+  `premium` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombres`, `apellidos`, `correo_electronico`, `saldo`) VALUES
-(1, 'Einer', 'Marin', 'einer@gmail.com', 11000.00);
+INSERT INTO `usuarios` (`username`, `contrasena`, `nombres`, `apellidos`, `correo_electronico`, `saldo`, `premium`) VALUES
+('einer_marin', NULL, 'einer', 'marin beltran', 'emarinbe@ibero.edu.co', 20000.00, 0);
 
 --
 -- Índices para tablas volcadas
@@ -120,14 +88,8 @@ INSERT INTO `usuarios` (`id`, `nombres`, `apellidos`, `correo_electronico`, `sal
 -- Indices de la tabla `alquiler`
 --
 ALTER TABLE `alquiler`
-  ADD PRIMARY KEY (`id`,`usuario_id`,`fecha`) USING BTREE,
-  ADD KEY `FK_usuarios` (`usuario_id`);
-
---
--- Indices de la tabla `contactenos`
---
-ALTER TABLE `contactenos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`,`username`,`fecha`) USING BTREE,
+  ADD KEY `FK_usuarios` (`username`);
 
 --
 -- Indices de la tabla `herramientas`
@@ -139,29 +101,17 @@ ALTER TABLE `herramientas`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`) USING BTREE;
+  ADD PRIMARY KEY (`username`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `contactenos`
---
-ALTER TABLE `contactenos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
 -- AUTO_INCREMENT de la tabla `herramientas`
 --
 ALTER TABLE `herramientas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Restricciones para tablas volcadas
@@ -172,7 +122,7 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `alquiler`
   ADD CONSTRAINT `FK_herramientas` FOREIGN KEY (`id`) REFERENCES `herramientas` (`id`),
-  ADD CONSTRAINT `FK_usuarios` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
+  ADD CONSTRAINT `FK_usuarios` FOREIGN KEY (`username`) REFERENCES `usuarios` (`username`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -26,18 +26,41 @@
 					<li class="nav-item">
 						<a class="nav-link" href="<?= ROOT ?>app/views/tools/index.php">Herramientas</a>
 					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="<?= ROOT ?>app/views/customer/index.php">Clientes</a>
+					</li>
 
 					<li class="nav-item">
-						<a class="nav-link" href="<?= ROOT ?>app/views/login/logout.php">Cerrar Sesión</a>
+						<a class="nav-link" href="<?= ROOT ?>app/views/rental/index.php">Alquiler</a>
 					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="<?= ROOT ?>app/views/contact/index.php">Gestión contactos</a>
+					</li>				
+
 					<?php }?>
 					
 					<?php if(!isset($user_autenticate)){ ?>
 					<li class="nav-item">
-						<a class="nav-link" href="<?= ROOT ?>app/views/login/login.php">Inciar Sesión</a>
+						<a class="nav-link" href="<?= ROOT ?>app/views/login/login.php">Iniciar sesión</a>
 					</li>
 					<?php }?>
 				</ul>
+
+				<?php if(isset($user_autenticate)){ ?>
+				<ul class="nav  justify-content-end">					
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Hola! <strong>Administrador</strong>
+					</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="<?= ROOT ?>app/views/login/logout.php">Cerrar sesión</a></li>
+						</ul>
+        			</li>
+				</ul>
+				<?php }?>
+				
 			</div>
             
 		</div>

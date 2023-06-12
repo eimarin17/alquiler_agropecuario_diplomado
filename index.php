@@ -5,27 +5,12 @@ if (isset($_SESSION['usuario'])) {
 }
 ?>
 
-<?php
-    include('config/config.php');
-?>
-
-<!doctype html>
-<html lang="en">
-
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Alquiler agropecuario</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<script src="js/script.js"></script>
-</head>
-
-<body>
-
+<?php include('header.php'); ?>
 <?php include('menu.php'); ?>
+
+<script>    
+    scriptLoader('./js/contact.js');
+</script>
 
 <!-- Inicio carrusel -->
 <section>
@@ -153,31 +138,36 @@ if (isset($_SESSION['usuario'])) {
 			<div class="col-lg-12 col-md-6 col-sm-12">
 				<h1>Contáctenos</h1>
 			</div>
+			<div class="col-lg-12 col-md-6 col-sm-12">
+				<p>Te invitamos a registrar tus datos y poder brindarte toda la información necesaria para hacer 
+					parte de este maravillo proyecto
+				</p>
+			</div>
 		</div>		
 	</section>	
 	  <section class="d-flex justify-content-center align-items-center">
 		<div class="container">
-		  <form>
+		  <form  id="formContact">
 			<div class="mb-3">
 			  <label for="nombre" class="form-label">Nombre</label>
-			  <input type="text" class="form-control" id="nombre" required>
+			  <input type="text" class="form-control" id="nombre" name="nombre" required>
 			</div>
 			<div class="mb-3">
 			  <label for="correo" class="form-label">Correo electrónico</label>
-			  <input type="email" class="form-control" id="correo" required>
+			  <input type="email" class="form-control" id="email" name="email" required>
 			</div>
 			<div class="mb-3">
 			  <label for="telefono" class="form-label">Teléfono</label>
-			  <input type="tel" class="form-control" id="telefono" required>
+			  <input type="number" class="form-control" id="telefono" name="telefono" required>
 			</div>
 			<div class="mb-3">
 			  <label for="mensaje" class="form-label">Mensaje</label>
-			  <textarea class="form-control" id="mensaje" rows="3" required></textarea>
+			  <textarea class="form-control" id="mensaje"  name="mensaje" rows="3" required></textarea>
 			</div>
 
 			<div class="mb-3">
 				<div class="d-grid gap-2">
-					<button type="submit" class="btn btn-primary color-principal" >Enviar</button>				
+					<button type="submit" id="btn_create_contact" class="btn btn-primary color-principal" >Enviar</button>				
 				</div>
 			</div>
 			
@@ -187,10 +177,3 @@ if (isset($_SESSION['usuario'])) {
 	  <!--Fin formulario contactenos-->
 
       <?php include('footer.php'); ?>
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-		crossorigin="anonymous"></script>
-</body>
-
-</html>
